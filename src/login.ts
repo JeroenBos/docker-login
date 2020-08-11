@@ -43,6 +43,7 @@ async function run() {
             }
         }
     }
+    core.debug(`The value of 'azcliversion' was '${azcliversion}'`);
     if (azcliversion != null && azcliversion != '')
     {
         config["azcliversion"] = azcliversion;
