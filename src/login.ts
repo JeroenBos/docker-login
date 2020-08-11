@@ -6,12 +6,14 @@ import * as fs from 'fs';
 
 interface dockerConfig {
     auths?: {[key: string]: {auth: string}}
+    azcliversion?: string;
 }
 
 async function run() {
     let username = core.getInput('username', { required: true });
     let password = core.getInput('password', { required: true });
     let loginServer = core.getInput('login-server', { required: true });
+    let azcliversion = core.getInput('azcliversion', { required: false });
     let authenticationToken = Buffer.from(`${username}:${password}`).toString('base64');
 
     let config: dockerConfig;
@@ -40,6 +42,10 @@ async function run() {
                 }
             }
         }
+    }
+    if (azcliversion != null && azcliversion != '')
+    {
+        config["azcliversion"] = azcliversion;
     }
     core.debug(`Writing docker config contents to ${dockerConfigPath}`);
     fs.writeFileSync(dockerConfigPath, JSON.stringify(config));

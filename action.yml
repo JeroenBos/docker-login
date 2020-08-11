@@ -13,6 +13,10 @@ inputs:
     description: 'Container registry server url'
     required: true
     default: 'https://index.docker.io/v1/'
+  azcliversion:
+    description: 'The azure cli version to use'
+    required: false
+    default: null
 branding:
   color: 'green'
 runs:
